@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.jmzzz.mapper.course">
+    <select id="selectCourseById" resultType="cn.jmzzz.javaweb.pojo.Course">
+        select *
+        from s_student
+        where id = #{id}
+    </select>
+
+    <resultMap id="all" type="cn.jmzzz.javaweb.pojo.Course">
+        <result column="sid" property="school_id"/>
+    </resultMap>
+
+    <select id="selectAllCourse" resultType="cn.jmzzz.javaweb.pojo.Course" resultMap="all">
+        select *
+        from s_student
+    </select>
+
+    <update id="updateCourse" parameterType="cn.jmzzz.javaweb.pojo.Course">
+        update s_student
+        set hours = #{hours}
+        where id = #{id}
+    </update>
+
+    <insert id="insertCourse" parameterType="cn.jmzzz.javaweb.pojo.Course">
+        insert into s_student (id, name, hours, sid)
+        values (#{id}, #{name}, #{hours}, #{school_id})
+    </insert>
+
+    <select id="selectCourseBySid" resultType="cn.jmzzz.javaweb.pojo.Course" resultMap="all">
+        select *
+        from s_student
+        where sid = #{sid}
+    </select>
+</mapper>
