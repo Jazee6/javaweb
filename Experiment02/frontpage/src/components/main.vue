@@ -200,17 +200,20 @@ function getBase64(img: any, callback: (base64Url: string) => void) {
     reader.readAsDataURL(img);
 }
 
-const store = useStore()
-
 const user = computed(() => {
-    return store.username
+    return localStorage.getItem("username")
 })
+
+const dengchu = () => {
+    localStorage.removeItem("username")
+    router.push("/login")
+}
 </script>
 
 <template>
     <div style="display: flex;justify-content: space-between">
         <h1 style="margin: 1rem ">课程列表</h1>
-        <h4>用户:{{user}} <a-button>登出</a-button> </h4>
+        <h4>用户:{{user}} <a-button @click="dengchu">登出</a-button> </h4>
     </div>
     <a-divider/>
     <a-modal :visible="visible3" title="确认框" @ok="handleok" @cancel="cancel">确认删除吗？？？？</a-modal>

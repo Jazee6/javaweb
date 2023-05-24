@@ -33,6 +33,7 @@ const login = () => {
             message.error(r)
         }else {
             message.success("登录成功！")
+            localStorage.setItem("username", username.value)
             window.location.href = "/"
         }
     })

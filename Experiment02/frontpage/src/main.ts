@@ -6,6 +6,8 @@ import 'ant-design-vue/dist/antd.css';
 import {createRouter, createWebHistory} from "vue-router";
 import {createPinia} from "pinia";
 
+const pinia = createPinia()
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
@@ -22,4 +24,5 @@ const router = createRouter({
 
 export default router
 
-createApp(App).use(Antd).use(router).use(createPinia).mount('#app')
+const app = createApp(App)
+app.use(pinia).use(Antd).use(router).mount('#app')
